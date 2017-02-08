@@ -27,14 +27,15 @@ public class UserController {
 	}
 
 	@RequestMapping(value = "/signUp", method = RequestMethod.POST)
-	public void afterSignUp(@ModelAttribute("newCustomer") Customer customer, RedirectAttributes redirect,
+	public String afterSignUp(@ModelAttribute("newCustomer") Customer customer, RedirectAttributes redirect,
 			HttpServletRequest req) throws ServletException {
 		customer.getAccount().setRole(Role.ROLE_CUSTOMER);
 		customerService.save(customer);
 		String username = customer.getAccount().getUsername();
 		String password = customer.getAccount().getPassword();
 		req.login(username, password);
-		redirect.addFlashAttribute("users", customerService.findAll());
+		return "forward:/home";
+		//redirect.addFlashAttribute("users", customerService.findAll());
 		// return "redirect:/customers";
 	}
 

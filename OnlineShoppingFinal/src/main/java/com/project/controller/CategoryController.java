@@ -17,12 +17,12 @@ public class CategoryController {
 	private CategoryService categoryService;
 
 	@RequestMapping(value = "/addcategory", method = RequestMethod.GET)
-	public String addNewProduct(@ModelAttribute("newCategory") Category newCategory, Model model) {
+	public String addNewCategory(@ModelAttribute("newCategory") Category newCategory, Model model) {
 		return "addcategory";
 	}
 
 	@RequestMapping(value = "/addcategory", method = RequestMethod.POST)
-	public String processAddNewProductForm(@ModelAttribute("newCategory") Category newCategory, RedirectAttributes redirect) {
+	public String processAddNewCategoryForm(@ModelAttribute("newCategory") Category newCategory, RedirectAttributes redirect) {
 		categoryService.addCategory(newCategory);
 		redirect.addFlashAttribute("category", categoryService.viewCategory());
 		return "redirect:/viewcategory";
