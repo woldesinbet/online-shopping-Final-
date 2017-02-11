@@ -53,20 +53,10 @@ public class WareHouseService {
 		headers.setAccept(Arrays.asList(MediaType.APPLICATION_JSON));
 
 		HttpEntity<String> entity = new HttpEntity<String>("parameters", headers);
-		try {
-
-			ResponseEntity<CartRequested> rRequest = restTemplate.postForEntity(WareHouseService.SHIPPING_REQUEST_PATH,
-					request, CartRequested.class);
-			System.out.println("header: " + rRequest.getHeaders());
-			System.out.println("Body: " + rRequest.getBody());
-
-			if (rRequest == null) {
-				throw new RuntimeException("Unable to create product. Warehouse system not responding.");
-			}
-		} catch (Exception ex) {
-			ex.printStackTrace();
-			System.out.println(ex.getStackTrace());
-			throw ex;
+		ResponseEntity<CartRequested> rRequest = restTemplate.postForEntity(WareHouseService.SHIPPING_REQUEST_PATH,
+				request, CartRequested.class);
+		if (!rRequest.hasBody()) {
+			throw new RuntimeException("Unable to create product. Warehouse system not responding.");
 		}
 
 	}

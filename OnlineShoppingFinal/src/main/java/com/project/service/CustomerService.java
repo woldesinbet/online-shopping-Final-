@@ -2,11 +2,15 @@ package com.project.service;
 
 import java.util.List;
 
+import javax.transaction.Transactional;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.project.model.Customer;
 import com.project.repository.CustomerRepository;
+
+@Transactional
 
 @Service
 public class CustomerService {

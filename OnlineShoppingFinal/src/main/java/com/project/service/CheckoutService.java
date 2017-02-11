@@ -1,13 +1,16 @@
 package com.project.service;
 
+import javax.transaction.Transactional;
+
 import org.springframework.beans.factory.annotation.Autowired;
+
 import org.springframework.stereotype.Service;
 
 import com.project.model.Cart;
 import com.project.model.Payment;
 import com.project.repository.CartRepository;
 import com.project.repository.CheckoutRepository;
-
+@Transactional
 @Service
 public class CheckoutService {
 	@Autowired
